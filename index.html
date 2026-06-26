@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08111c" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <title>Cube Trainer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <h1>Cube Trainer</h1>
+            <p>3D-Würfel drehen, Algorithmus eingeben und jeden Schritt ansehen.</p>
+          </div>
+          <div class="status-pill" id="statusText">Bereit</div>
+        </header>
+
+        <section class="trainer-grid">
+          <aside class="panel controls-panel">
+            <div class="field-group">
+              <label for="algorithmInput">Algorithmus</label>
+              <textarea id="algorithmInput" spellcheck="false">R U R' U'</textarea>
+              <div class="hint" id="parseHint">Beispiel: R U R' U'.</div>
+            </div>
+
+            <div class="button-row">
+              <button id="applyAlgorithm" class="primary"><span><i data-feather="play"></i> Anwenden</span></button>
+              <button id="resetCube"><span><i data-feather="refresh-cw"></i> Reset</span></button>
+            </div>
+
+            <div class="field-group">
+              <div class="label-line">
+                <span>Farben setzen</span>
+                <span class="mini-note">Klick: Farbe ändern</span>
+              </div>
+              <div class="palette" id="palette"></div>
+            </div>
+
+            <div class="field-group">
+              <div class="label-line">
+                <span>Algorithmen‑Bibliothek</span>
+                <span class="mini-note">Wähle OLL/PLL und ein Alg</span>
+              </div>
+              <div class="algo-row">
+                <select id="algoCategory"></select>
+                <select id="algoList"></select>
+              </div>
+              <div class="button-row">
+                <button id="insertAlgo" title="Einfügen">Einfügen</button>
+              </div>
+            </div>
+          </aside>
+
+          <section class="cube-stage">
+            <div class="view-toggle" aria-label="Ansicht">
+              <button id="viewBoth" class="active"><span><i data-feather="layout"></i> Beides</span></button>
+              <button id="view3d"><span><i data-feather="box"></i> 3D</span></button>
+              <button id="view2d"><span><i data-feather="grid"></i> 2D</span></button>
+            </div>
+
+            <div class="views both" id="views">
+              <div class="scene-wrap">
+                <div class="scene" id="scene" aria-label="3D Würfel"></div>
+              </div>
+              <div class="net-wrap">
+                <div class="net" id="net" aria-label="2D Würfelnetz"></div>
+              </div>
+            </div>
+          </section>
+
+          <aside class="panel steps-panel">
+            <div class="step-header">
+              <div>
+                <h2>Schritte</h2>
+                <p id="stepCounter">Startposition</p>
+              </div>
+            </div>
+            <div class="transport">
+              <button id="prevStep" title="Zurück"><i data-feather="chevron-left"></i></button>
+              <button id="playPause" class="primary" title="Abspielen"><span><i data-feather="play"></i> Play</span></button>
+              <button id="nextStep" title="Weiter"><i data-feather="chevron-right"></i></button>
+            </div>
+            <ol class="moves" id="moveList"></ol>
+          </aside>
+        </section>
+      </section>
+    </main>
+
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="algorithms.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
